@@ -11,6 +11,7 @@ import {taskReducer} from "./reducers/taskReducer"
 import rootTaskSaga from "./sagas/taskSagas"
 import rootCommentSaga from "./sagas/commentSagas"
 import {commentReducer} from "./reducers/commentReducer"
+import rootSubtaskSaga from "./sagas/subtaskSagas";
 
 export const rootReducer = combineReducers({
   modal: modalReducer,
@@ -34,7 +35,8 @@ export function* rootSaga(){
     rootProjectSaga,
     rootBoardSaga,
     rootTaskSaga,
-    rootCommentSaga
+    rootCommentSaga,
+    rootSubtaskSaga
   ]
 
   const retrySagas = yield sagas.map(saga => {

@@ -44,3 +44,18 @@
     font-size: 14px;
   }
 }
+@media (max-width: 680px) {
+  .task_footer {
+    flex-direction: column;
+  }
+}
+@media (max-width: 385px) {
+  .task_footer {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .task_content {
+    display: none;
+  }
+}

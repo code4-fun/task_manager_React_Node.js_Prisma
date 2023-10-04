@@ -11,6 +11,7 @@ import TaskInput from "../ui/taskInput/TaskInput"
 import CustomSelect from "../ui/customSelect/CustomSelect"
 import Subtasks from "../subtasks/Subtasks"
 import Files from "../files/Files"
+import {addSubtaskRequested, deleteSubtaskRequested, toggleSubtaskRequested} from "../../store/actions/subtaskActions"
 
 const TaskMajor = ({taskId}) => {
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ const TaskMajor = ({taskId}) => {
     dispatch(fetchTaskRequested(taskId))
   }, [])
 
-  function onCommentCreate(message) {
+  const onCommentCreate = message => {
     dispatch(addCommentRequested({taskId, message}))
   }
 
@@ -33,7 +34,18 @@ const TaskMajor = ({taskId}) => {
     }
   }
 
-  const updateSubTask = () => {
+  const addSubtask = value => {
+    if(value[Object.keys(value)[0]] && task[Object.keys(value)[0]] !== Object.values(value)[0]){
+      dispatch(addSubtaskRequested({taskId: taskId, ...value}))
+    }
+  }
+
+  const removeSubtask = subtaskId => {
+    dispatch(deleteSubtaskRequested({taskId: taskId, subtaskId}))
+  }
+
+  const toggleSubtask = subtaskId => {
+    dispatch(toggleSubtaskRequested({taskId: taskId, subtaskId}))
   }
 
   if(taskError) return <div className="error-msg">{taskError}</div>
@@ -54,6 +66,7 @@ const TaskMajor = ({taskId}) => {
               :
               <TaskInput
                 text={task?.title}
+                initialValue={task?.title}
                 placeholder="Enter title"
                 onSubmit={title => updateTask({title: title})}
               />
@@ -68,6 +81,7 @@ const TaskMajor = ({taskId}) => {
               :
               <TaskInput
                 text={task?.description}
+                initialValue={task?.title}
                 placeholder="Enter description"
                 onSubmit={description => updateTask({description: description})}
               />
@@ -108,12 +122,15 @@ const TaskMajor = ({taskId}) => {
         </div>
         <div className='task-major_subtasks'>
           <div className='name'>Subtasks</div>
-          <Subtasks subtasks={task?.subtasks} />
+          <Subtasks
+            removeSubtask={removeSubtask}
+            toggleSubtask={toggleSubtask}
+            subtasks={task?.subtasks} />
         </div>
         <TaskInput
           text={"Add a subtask"}
           placeholder="Task description"
-          onSubmit={updateSubTask}
+          onSubmit={description => addSubtask({description: description})}
         />
         <div className='task-major_files'>
           <div className='name'>Files</div>

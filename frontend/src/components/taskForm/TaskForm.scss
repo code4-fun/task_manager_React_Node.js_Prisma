@@ -37,3 +37,13 @@
   font-weight: 500;
   padding-bottom: 2px;
 }
+@media (max-width: 550px) {
+  .task_form {
+    min-width: 300px;
+  }
+}
+@media (max-width: 420px) {
+  .task_form {
+    min-width: 0;
+  }
+}

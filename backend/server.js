@@ -334,8 +334,12 @@ app.put("/tasks/:taskId/comments/:commentId", async (req, res) => {
   }
 
   const {userId} = await prisma.comment.findUnique({
-    where: { id: req.params.commentId },
-    select: { userId: true }
+    where: {
+      id: req.params.commentId
+    },
+    select: {
+      userId: true
+    }
   })
 
   if (userId !== req.cookies.userId) {
@@ -360,8 +364,12 @@ app.put("/tasks/:taskId/comments/:commentId", async (req, res) => {
 
 app.delete("/tasks/:taskId/comments/:commentId", async (req, res) => {
   const {userId} = await prisma.comment.findUnique({
-    where: { id: req.params.commentId },
-    select: { userId: true },
+    where: {
+      id: req.params.commentId
+    },
+    select: {
+      userId: true
+    },
   })
 
   if (userId !== req.cookies.userId) {
@@ -374,8 +382,72 @@ app.delete("/tasks/:taskId/comments/:commentId", async (req, res) => {
 
   return await commitToDb(
     prisma.comment.delete({
-      where: { id: req.params.commentId },
-      select: { id: true }
+      where: {
+        id: req.params.commentId
+      },
+      select: {
+        id: true
+      }
+    })
+  )
+})
+
+app.post("/tasks/:taskId/subtasks", async (req, res) => {
+  if (req.body.description === "" || req.body.description == null) {
+    return res.send(app.httpErrors.badRequest("Subtask description is required"))
+  }
+
+  return await commitToDb(
+    prisma.subtask.create({
+      data: {
+        description: req.body.description,
+        completed: false,
+        taskId: req.params.taskId,
+      },
+      select: {
+        id: true,
+        description: true,
+        completed: true,
+      }
+    })
+  )
+})
+
+app.delete("/tasks/:taskId/subtasks/:subtaskId", async (req, res) => {
+  return await commitToDb(
+    prisma.subtask.delete({
+      where: {
+        id: req.params.subtaskId
+      },
+      select: {
+        id: true
+      }
+    })
+  )
+})
+
+app.put("/tasks/:taskId/subtasks/:subtaskId", async (req, res) => {
+  const {completed} = await prisma.subtask.findUnique({
+    where: {
+      id: req.params.subtaskId
+    },
+    select: {
+      completed: true
+    },
+  })
+
+  return await commitToDb(
+    prisma.subtask.update({
+      where: {
+        id: req.params.subtaskId
+      },
+      data: {
+        completed: !completed
+      },
+      select: {
+        id: true,
+        completed: true
+      }
     })
   )
 })

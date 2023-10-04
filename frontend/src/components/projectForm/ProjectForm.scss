@@ -14,12 +14,12 @@
 .project_form > *:not(:last-child) {
   margin-bottom: 10px;
 }
-@media (max-width: 530px) {
+@media (max-width: 550px) {
   .project_form {
     min-width: 300px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .project_form {
     min-width: 0;
   }

@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import './TaskInput.scss'
 
-const TaskInput = ({text, onSubmit, placeholder, buttonText}) => {
+const TaskInput = ({text, onSubmit, placeholder, initialValue, buttonText}) => {
   const [isTaskInput, setIsTaskInput] = useState(false)
-  const [inputText, setInputText] = useState(text || "")
+  const [inputText, setInputText] = useState(initialValue || "")
 
   const submitForm = (e) => {
     e.preventDefault()

@@ -48,3 +48,8 @@
   height: 40.797px;
   width: fit-content;
 }
+@media (max-width: 600px) {
+  .task-major_body {
+    width: fit-content;
+  }
+}
