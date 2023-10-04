@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+*,
+::before,
+::after{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+ul,
+ol,
+li{
+  list-style: none;
+}
+img{
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body,
+#root{
+  height: 100%;
+  line-height: 1.3;
+  font-size: 16px;
+  font-weight: 400;
+  color: #252B42;
+  background: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+.wrapper{
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.container{
+  max-width: 1046px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: content-box;
+}
+.image-background{
+  position: relative;
+}
+.image-background img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
+.error-msg {
+  color: hsl(0, 100%, 67%);
+}
+.mt-1 {
+  margin-top: .25rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.btn {
+  --hue: 235;
+  --color: hsl(var(--hue), 100%, 67%);
+  padding: .5em 1em;
+  background: var(--color);
+  border: none;
+  color: white;
+  border-radius: .5em;
+  font-size: .75em;
+  cursor: pointer;
+}
+.btn:hover,
+.btn:focus-visible {
+  --color: hsl(var(--hue), 100%, 74%);
+}
+.btn.icon-btn {
+  background: none;
+  color: var(--color);
+  padding: .25em;
+  display: flex;
+  align-items: center;
+}
+.mr-1 {
+  margin-right: .25em;
+}
+.icon-btn:hover,
+.icon-btn:focus-visible {
+  --color: hsl(var(--hue), 100%, 74%);
+}
+.icon-btn-active,
+.icon-btn.danger {
+  --hue: 0;
+}
+.icon-btn-active {
+  position: relative;
+}
+.icon-btn-active::before {
+  content: "\00D7";
+  position: absolute;
+  font-size: .75em;
+  width: 1em;
+  height: 1em;
+  color: white;
+  background-color: var(--color);
+  border-radius: 50%;
+  bottom: .1em;
+  right: .1em;
+}
+.ml-3 {
+  margin-left: 1.5rem;
+}
+.btn[disabled] {
+  --color: hsl(var(--hue), 20%, 74%);
+}

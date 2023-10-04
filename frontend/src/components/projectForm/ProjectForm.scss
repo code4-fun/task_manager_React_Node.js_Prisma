@@ -1,0 +1,26 @@
+.project_form {
+  display: flex;
+  flex-direction: column;
+  min-width: 450px;
+  &_title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  button {
+    align-self: end;
+    margin-top: 4px;
+  }
+}
+.project_form > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+@media (max-width: 530px) {
+  .project_form {
+    min-width: 300px;
+  }
+}
+@media (max-width: 400px) {
+  .project_form {
+    min-width: 0;
+  }
+}

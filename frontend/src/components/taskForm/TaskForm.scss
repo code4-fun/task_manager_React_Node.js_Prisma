@@ -1,0 +1,39 @@
+.task_form {
+  display: flex;
+  flex-direction: column;
+  min-width: 450px;
+  &_title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  button {
+    align-self: end;
+    margin-top: 4px;
+  }
+}
+.task_form > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+.completion_date [type="date"] {
+  width: 100%;
+  border: 2px solid hsl(235, 100%, 90%);
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+  font-family: inherit;
+  padding: 8px;
+}
+.completion_date .name {
+  font-weight: 500;
+  padding-bottom: 2px;
+}
+.priority_selector select,
+.board_selector select {
+  border: 2px solid hsl(235, 100%, 90%);
+  width: 100%;
+}
+.priority_selector .name,
+.board_selector .name {
+  font-weight: 500;
+  padding-bottom: 2px;
+}

@@ -1,0 +1,34 @@
+.file_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & .btn, .btn.icon-btn {
+    padding: 0;
+  }
+}
+.file_list_line {
+  display: flex;
+  justify-content: space-between;
+}
+.file_list svg {
+  height: 15px;
+  width: 15px;
+}
+.file_name {
+  line-height: 18px;
+  cursor: pointer;
+}
+.file_name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.upload_file_button {
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+  color: hsl(235, 100%, 60%);
+  width: fit-content;
+}
+.upload_file_button:hover {
+  text-decoration: underline;
+}

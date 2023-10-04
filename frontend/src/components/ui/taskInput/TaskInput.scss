@@ -1,0 +1,54 @@
+.task-input {
+  width: 100%;
+}
+.task-input-display {
+  padding: 10px 12px;
+  border-radius: 3px;
+  background-color: #eee;
+  color: #252B42;
+  cursor: pointer;
+  width: fit-content;
+  min-height: 40.797px;
+  transition: 200ms;
+}
+.task-input-display:hover {
+  background-color: #ddd;
+}
+.task-input-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task-input-edit input {
+  border: 2px solid hsl(235, 100%, 67%);
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+  padding: 10px;
+}
+.task-input-edit-footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.task-input-edit-footer button {
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+  background-color: hsl(235, 100%, 67%);
+  color: #fff;
+  border: none;
+  transition: 100ms ease;
+  padding: 10px;
+}
+.task-input-edit-footer button:hover {
+  background-color: hsl(235, 100%, 74%);
+}
+.task-input-edit-footer button:active {
+  transform: translateY(2px);
+}
+.task-input-edit-footer .close-icon {
+  cursor: pointer;
+  font-size: 35px;
+  line-height: 1;
+}

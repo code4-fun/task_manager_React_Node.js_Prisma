@@ -1,0 +1,50 @@
+.task-major {
+  &_body {
+    width: 500px;
+  }
+  &_body > *:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  &_header {
+    display: flex;
+    justify-content: space-between;
+  }
+  &_number {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  &_content .name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom:5px;
+  }
+  &_content > *:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  &_date input[type="date"] {
+    width: fit-content;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    font-family: inherit;
+    padding: 8px;
+  }
+  &_comments > :not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+.show_comments_button {
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+  color: hsl(235, 100%, 60%);
+  width: fit-content;
+}
+.show_comments_button:hover {
+  text-decoration: underline;
+}
+.loading_block {
+  height: 40.797px;
+  width: fit-content;
+}

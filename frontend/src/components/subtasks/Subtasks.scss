@@ -1,0 +1,27 @@
+.subtask_list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.subtask_list_line {
+  display: flex;
+  gap: 10px;
+}
+.subtask_list_line input {
+  height: 18px;
+  width: 18px;
+  outline: none;
+  cursor: pointer;
+}
+.subtask_list_line svg {
+  height: 15px;
+  width: 15px;
+}
+.subtask_list_line label {
+
+  line-height: 18px;
+  cursor: pointer;
+}
+.subtask_placeholder {
+  flex: 1;
+}

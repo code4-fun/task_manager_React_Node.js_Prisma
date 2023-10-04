@@ -1,0 +1,46 @@
+.task {
+  padding: 12px;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  box-shadow: 0 0 7px 3px rgba(0, 0, 0, .1);
+  &:hover {
+    background-color: #eceef1;
+  }
+  &.is-dragging {
+    background-color: #fff;
+  }
+  &_body {
+    display: flex;
+    flex-direction: column;
+  }
+  &_body > *:not(:last-child){
+    margin-bottom: 10px;
+  }
+  &_header {
+    display: flex;
+    justify-content: space-between;
+  }
+  &_content {
+    min-height: 36.375px;
+  }
+  &_title {
+    font-weight: 500;
+  }
+  &_footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  &_priority.red {
+    color: hsl(0, 50%, 50%);
+  }
+  &_priority.yellow {
+    color: hsl(61, 50%, 50%);
+  }
+  &_priority.green {
+    color: hsl(148, 50%, 50%);
+  }
+  &_in-work {
+    font-size: 14px;
+  }
+}

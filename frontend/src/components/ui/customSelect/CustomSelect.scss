@@ -1,0 +1,16 @@
+.custom-select{
+  width: 160px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+  font-family: inherit;
+  padding: 8px;
+}
+.custom-select:hover {
+  cursor: pointer;
+}
+.custom-option:hover {
+  cursor: pointer;
+  background-color: red;
+}

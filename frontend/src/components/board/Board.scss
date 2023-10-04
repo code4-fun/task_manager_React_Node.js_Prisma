@@ -1,0 +1,31 @@
+.board {
+  flex: 1 1 33.333%;
+  &_body {
+    margin: 0 8px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: hsl(235, 100%, 97%);
+  }
+  &_title {
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+  }
+  &_content {
+    flex: auto;
+    margin: 15px 0 0 0;
+    border-radius: 15px;
+    min-height: 100px;
+    &.is-dragged-over {
+      transition: background-color 0.2s ease;
+      background-color: hsl(216, 15%, 98%);
+      border-radius: 4px;
+    }
+  }
+  &_content > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
