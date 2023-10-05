@@ -23,3 +23,9 @@ export function deleteTaskApi(taskId){
     method: "DELETE"
   })
 }
+
+export function searchTasksApi(search) {
+  return makeRequest('/tasks/search', {
+    params: {search}
+  })
+}

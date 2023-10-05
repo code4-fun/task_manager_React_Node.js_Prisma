@@ -6,13 +6,17 @@ export const TASK_FETCH_REQUESTED = 'TASK_FETCH_REQUESTED'
 export const TASK_FETCH_SUCCEEDED = 'TASK_FETCH_SUCCEEDED'
 export const TASK_FETCH_FAILED = 'TASK_FETCH_FAILED'
 
-export const TASK_ADD_REQUESTED = "TASK_ADD_REQUESTED"
-export const TASK_ADD_SUCCEEDED = "TASK_ADD_SUCCEEDED"
-export const TASK_ADD_FAILED = "TASK_ADD_FAILED"
+export const TASK_ADD_REQUESTED = 'TASK_ADD_REQUESTED'
+export const TASK_ADD_SUCCEEDED = 'TASK_ADD_SUCCEEDED'
+export const TASK_ADD_FAILED = 'TASK_ADD_FAILED'
 
-export const TASK_DELETE_REQUESTED = "TASK_DELETE_REQUESTED"
-export const TASK_DELETE_SUCCEEDED = "TASK_DELETE_SUCCEEDED"
-export const TASK_DELETE_FAILED = "TASK_DELETE_FAILED"
+export const TASK_DELETE_REQUESTED = 'TASK_DELETE_REQUESTED'
+export const TASK_DELETE_SUCCEEDED = 'TASK_DELETE_SUCCEEDED'
+export const TASK_DELETE_FAILED = 'TASK_DELETE_FAILED'
+
+export const TASKS_SEARCH_REQUESTED = 'TASKS_SEARCH_REQUESTED'
+export const TASKS_SEARCH_SUCCEEDED = 'TASKS_SEARCH_SUCCEEDED'
+export const TASKS_SEARCH_FAILED = 'TASKS_SEARCH_FAILED'
 
 export const updateTaskRequested = task => ({
   type: TASK_UPDATE_REQUESTED,
@@ -71,5 +75,20 @@ export const deleteTaskSucceeded = id => ({
 
 export const deleteTaskFailed = error => ({
   type: TASK_DELETE_FAILED,
+  payload: error
+})
+
+export const searchTasksRequested = searchString => ({
+  type: TASKS_SEARCH_REQUESTED,
+  payload: searchString
+})
+
+export const searchTasksSucceeded = searchResult => ({
+  type: TASKS_SEARCH_SUCCEEDED,
+  payload: searchResult
+})
+
+export const searchTasksFailed = error => ({
+  type: TASKS_SEARCH_FAILED,
   payload: error
 })

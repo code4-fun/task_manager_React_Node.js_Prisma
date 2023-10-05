@@ -13,19 +13,22 @@ app.register(cors, {
   credentials: true
 })
 app.addHook("onRequest", (req, res, done) => {
-  if (req.cookies.userId !== CURRENT_USER_ID) {
+  if (req.cookies.userId !== CURRENT_USER_ID){
     req.cookies.userId = CURRENT_USER_ID
     res.clearCookie("userId")
+    res.clearCookie("userName")
     res.setCookie("userId", CURRENT_USER_ID)
+    res.setCookie("userName", CURRENT_USER_NAME)
   }
   done()
 })
 const prisma = new PrismaClient()
+const CURRENT_USER_NAME = 'Mike'
 
 const CURRENT_USER_ID = (
   await prisma.user.findFirst({
     where: {
-      name: "Mike"
+      name: CURRENT_USER_NAME
     }
   })
 ).id
@@ -447,6 +450,24 @@ app.put("/tasks/:taskId/subtasks/:subtaskId", async (req, res) => {
       select: {
         id: true,
         completed: true
+      }
+    })
+  )
+})
+
+app.get('/tasks/search', async (req, res) => {
+  if(req.query.search === ''){
+    return null
+  }
+  return await commitToDb(
+    prisma.task.findMany({
+      where: {
+        title: {contains: req.query.search}
+      },
+      select: {
+        id: true,
+        number: true,
+        title: true
       }
     })
   )

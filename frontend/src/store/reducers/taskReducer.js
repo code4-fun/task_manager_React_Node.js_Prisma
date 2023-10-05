@@ -6,7 +6,10 @@ const initialState = {
   loading: false,
   error: null,
   subtaskLoading: false,
-  subtaskError: null
+  subtaskError: null,
+  searchResult: [],
+  searchResultLoading: false,
+  searchResultError: null
 }
 
 export const taskReducer = (state = initialState, action) => {
@@ -23,6 +26,11 @@ export const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         subtaskLoading: true
+      }
+    case types.TASKS_SEARCH_REQUESTED:
+      return {
+        ...state,
+        searchResultLoading: true
       }
     case types.TASK_UPDATE_SUCCEEDED:
       return {
@@ -65,6 +73,13 @@ export const taskReducer = (state = initialState, action) => {
         subtaskLoading: false,
         subtaskError: null
       }
+    case types.TASKS_SEARCH_SUCCEEDED:
+      return {
+        ...state,
+        searchResult: action.payload,
+        searchResultError: null,
+        searchResultLoading: false
+      }
     case types.TASK_UPDATE_FAILED:
     case types.TASK_FETCH_FAILED:
       return {
@@ -79,6 +94,12 @@ export const taskReducer = (state = initialState, action) => {
         ...state,
         subtaskError: action.payload,
         subtaskLoading: false
+      }
+    case types.TASKS_SEARCH_FAILED:
+      return {
+        ...state,
+        searchResultError: action.payload,
+        searchResultLoading: false
       }
     default:
       return state
