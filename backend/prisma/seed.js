@@ -192,34 +192,6 @@ async function seed() {
     }
   })
 
-  const file1 = await prisma.file.create({
-    data: {
-      name: 'gfd54-3jkv5-35kjg.jpg',
-      taskId: task1.id
-    }
-  })
-
-  const file2 = await prisma.file.create({
-    data: {
-      name: 'gddf4-3jkv5-35kjg.jpg',
-      taskId: task1.id
-    }
-  })
-
-  const file3 = await prisma.file.create({
-    data: {
-      name: 'xghm-3jkv5-35kjg.jpg',
-      taskId: task1.id
-    }
-  })
-
-  const file4 = await prisma.file.create({
-    data: {
-      name: 'lukb-3jkv5-35kjg.jpg',
-      taskId: task2.id
-    }
-  })
-
   const subtask1 = await prisma.subtask.create({
     data: {
       description: "Content of subtask 1 of task 1",

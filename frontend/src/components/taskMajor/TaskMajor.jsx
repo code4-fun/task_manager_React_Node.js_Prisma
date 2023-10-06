@@ -133,8 +133,7 @@ const TaskMajor = ({taskId}) => {
           onSubmit={description => addSubtask({description: description})}
         />
         <div className='task-major_files'>
-          <div className='name'>Files</div>
-          <Files files={task?.files} />
+          <Files files={task?.files} taskId={taskId} />
         </div>
       </div>
 

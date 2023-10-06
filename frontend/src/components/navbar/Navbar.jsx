@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Navbar.scss'
 import {Link} from 'react-router-dom'
 import {useLocation} from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {toggleModal} from '../../store/actions/modalActions'
 import {addProjectRequested} from '../../store/actions/projectActions'
 import {addTaskRequested} from '../../store/actions/taskActions'
@@ -11,10 +11,16 @@ import {getCookie} from "../../utils";
 import TaskForm from "../taskForm/TaskForm";
 import ProjectForm from "../projectForm/ProjectForm";
 import SearchForm from "../searchResult/SearchForm";
+import {saveUser} from "../../store/actions/authActions";
 
 const Navbar = () => {
   const location = useLocation()
   const dispatch = useDispatch()
+  const {userName} = useSelector(state => state.auth)
+
+  useEffect(() => {
+    dispatch(saveUser(getCookie('userName')))
+  }, [])
 
   function onProjectCreate(project) {
     dispatch(addProjectRequested(project))
@@ -65,18 +71,18 @@ const Navbar = () => {
             ?
             <CustomDropdown
               onChange={dropdownChangeHandler}
-              initialValue={getCookie('userName')}
+              initialValue={userName || 'user'}
               options={[
                 {value: 'createTask', name: 'Create Task'},
-                {value: 'search', name: 'Search'}
+                {value: 'search', name: 'Search Task'}
               ]} />
             :
             <CustomDropdown
               onChange={dropdownChangeHandler}
-              initialValue={getCookie('userName')}
+              initialValue={userName || 'user'}
               options={[
                 {value: 'createProject', name: 'Create Project'},
-                {value: 'search', name: 'Search'}
+                {value: 'search', name: 'Search Task'}
               ]} />
           }
         </div>

@@ -1,7 +1,7 @@
 import './SearchForm.scss'
-import React from 'react'
+import React, {useEffect} from 'react'
 import CustomInput from "../ui/input/CustomInput";
-import {searchTasksRequested} from "../../store/actions/taskActions";
+import {deleteSearchResult, searchTasksRequested} from "../../store/actions/taskActions";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleModal} from "../../store/actions/modalActions";
 import TaskMajor from "../taskMajor/TaskMajor";
@@ -11,11 +11,17 @@ const SearchForm = ({autoFocus = false}) => {
   const dispatch = useDispatch()
   const {searchResult} = useSelector(state => state.tasks)
 
+  useEffect(() => {
+    return () => {
+      dispatch(deleteSearchResult())
+    }
+  }, [])
+
   const searchTask = searchString => {
     clearTimeout(timer)
     timer = setTimeout(() => {
       dispatch(searchTasksRequested(searchString))
-    }, 2000)
+    }, 1000)
   }
 
   return (

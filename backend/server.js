@@ -2,18 +2,26 @@ import fastify from 'fastify'
 import sensible from '@fastify/sensible'
 import cors from '@fastify/cors'
 import cookie from '@fastify/cookie'
+import * as uuid from 'uuid'
 import 'dotenv'
 import {PrismaClient} from '@prisma/client'
+import multipart from '@fastify/multipart'
+import * as fs from "node:fs"
+import * as util from 'node:util'
+import { pipeline } from 'node:stream'
+import * as path from 'node:path'
 
+const pump = util.promisify(pipeline)
 const app = fastify()
 app.register(sensible)
+app.register(multipart)
 app.register(cookie, {secret: process.env.COOKIE_SECRET})
 app.register(cors, {
   origin: true,
   credentials: true
 })
 app.addHook("onRequest", (req, res, done) => {
-  if (req.cookies.userId !== CURRENT_USER_ID){
+  if (req.cookies.userId !== CURRENT_USER_ID || req.cookies.userName == null){
     req.cookies.userId = CURRENT_USER_ID
     res.clearCookie("userId")
     res.clearCookie("userName")
@@ -194,7 +202,8 @@ const TASK_SELECT_FIELDS = {
   files: {
     select: {
       id: true,
-      name: true
+      name: true,
+      path: true
     }
   }
 }
@@ -457,17 +466,62 @@ app.put("/tasks/:taskId/subtasks/:subtaskId", async (req, res) => {
 
 app.get('/tasks/search', async (req, res) => {
   if(req.query.search === ''){
-    return null
+    return []
   }
+
   return await commitToDb(
-    prisma.task.findMany({
+    prisma.$queryRawUnsafe(
+      'SELECT "public"."Task"."id", "public"."Task"."number", "public"."Task"."title" ' +
+      'FROM "public"."Task" WHERE ("public"."Task"."number" = $1 OR "public"."Task"."title" ILIKE $2)',
+      parseInt(req.query.search),
+      `%${req.query.search}`)
+  )
+})
+
+app.post("/tasks/:taskId/files", async function (req, reply) {
+  const parts = req.parts()
+  for await (const part of parts) {
+    const uniqueFileName = uuid.v4() + part.filename.substr(part.filename.lastIndexOf('.'))
+    const file = await commitToDb(
+      prisma.file.create({
+        data: {
+          name: part.filename,
+          path: `public/${uniqueFileName}`,
+          taskId: req.params.taskId
+        },
+        select: {
+          id: true,
+          name: true,
+          path: true
+        }
+      })
+    )
+    await pump(part.file, fs.createWriteStream(`./public/${uniqueFileName}`))
+    return {...file}
+  }
+})
+
+app.delete("/tasks/:taskId/files/:fileId", async (req, res) => {
+  const {path} = await prisma.file.findUnique({
+    where: {
+      id: req.params.fileId
+    },
+    select: {
+      path: true
+    },
+  })
+
+  fs.unlink(path, err => {
+    if(err) throw err
+  })
+
+  return await commitToDb(
+    prisma.file.delete({
       where: {
-        title: {contains: req.query.search}
+        id: req.params.fileId
       },
       select: {
-        id: true,
-        number: true,
-        title: true
+        id: true
       }
     })
   )

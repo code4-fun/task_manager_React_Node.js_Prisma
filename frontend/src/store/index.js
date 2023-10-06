@@ -11,14 +11,17 @@ import {taskReducer} from "./reducers/taskReducer"
 import rootTaskSaga from "./sagas/taskSagas"
 import rootCommentSaga from "./sagas/commentSagas"
 import {commentReducer} from "./reducers/commentReducer"
-import rootSubtaskSaga from "./sagas/subtaskSagas";
+import rootSubtaskSaga from "./sagas/subtaskSagas"
+import {authReducer} from "./reducers/authReducer"
+import rootFileSaga from "./sagas/fileSagas";
 
 export const rootReducer = combineReducers({
   modal: modalReducer,
   projects: projectReducer,
   boards: boardReducer,
   tasks: taskReducer,
-  comments: commentReducer
+  comments: commentReducer,
+  auth: authReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()
@@ -36,7 +39,8 @@ export function* rootSaga(){
     rootBoardSaga,
     rootTaskSaga,
     rootCommentSaga,
-    rootSubtaskSaga
+    rootSubtaskSaga,
+    rootFileSaga
   ]
 
   const retrySagas = yield sagas.map(saga => {

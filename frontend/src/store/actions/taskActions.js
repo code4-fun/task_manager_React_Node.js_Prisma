@@ -18,6 +18,8 @@ export const TASKS_SEARCH_REQUESTED = 'TASKS_SEARCH_REQUESTED'
 export const TASKS_SEARCH_SUCCEEDED = 'TASKS_SEARCH_SUCCEEDED'
 export const TASKS_SEARCH_FAILED = 'TASKS_SEARCH_FAILED'
 
+export const SEARCH_RESULT_DELETE = 'SEARCH_RESULT_DELETE'
+
 export const updateTaskRequested = task => ({
   type: TASK_UPDATE_REQUESTED,
   payload: task
@@ -91,4 +93,8 @@ export const searchTasksSucceeded = searchResult => ({
 export const searchTasksFailed = error => ({
   type: TASKS_SEARCH_FAILED,
   payload: error
+})
+
+export const deleteSearchResult = () => ({
+  type: SEARCH_RESULT_DELETE
 })

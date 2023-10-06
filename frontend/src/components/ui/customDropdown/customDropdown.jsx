@@ -34,7 +34,6 @@ const CustomDropdown = ({onChange, options, initialValue}) => {
         if (dropdown === currentDropdown){
           return
         }
-        console.log('two')
         dropdown.classList.remove('active')
         document.querySelector('.chevron').classList.remove('active')
         document.querySelector('.chevron').classList.remove('top')

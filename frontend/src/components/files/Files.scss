@@ -1,7 +1,21 @@
+.file_component {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.file_body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.file_title {
+  font-size: 18px;
+  font-weight: 600;
+}
 .file_list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
   & .btn, .btn.icon-btn {
     padding: 0;
   }
@@ -31,4 +45,16 @@
 }
 .upload_file_button:hover {
   text-decoration: underline;
+}
+.file_input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.file_picker {
+  display: flex;
 }
