@@ -9,7 +9,6 @@ import multipart from '@fastify/multipart'
 import * as fs from "node:fs"
 import * as util from 'node:util'
 import { pipeline } from 'node:stream'
-import * as path from 'node:path'
 
 const pump = util.promisify(pipeline)
 const app = fastify()
