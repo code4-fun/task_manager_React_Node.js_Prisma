@@ -64,26 +64,26 @@ const TaskMajor = ({taskId}) => {
               ?
               <div className='loading_block'>Loading...</div>
               :
-              <TaskInput
-                text={task?.title}
-                initialValue={task?.title}
-                placeholder="Enter title"
-                onSubmit={title => updateTask({title: title})}
+              <TaskInput text={task?.title}
+                         initialValue={task?.title}
+                         placeholder="Enter title"
+                         onSubmit={title => updateTask({title: title})}
               />
           }
         </div>
         <div className='task-major_description'>
-          <div className='name'>Description</div>
+          {
+            task?.description && <div className='name'>Description</div>
+          }
           {
             loadingTask
               ?
               <div className='loading_block'>Loading...</div>
               :
-              <TaskInput
-                text={task?.description || 'Add description'}
-                initialValue={task?.description}
-                placeholder="Enter description"
-                onSubmit={description => updateTask({description: description})}
+              <TaskInput text={task?.description || 'Add description'}
+                         initialValue={task?.description}
+                         placeholder="Enter description"
+                         onSubmit={description => updateTask({description: description})}
               />
           }
         </div>
@@ -94,11 +94,10 @@ const TaskMajor = ({taskId}) => {
               ?
               <div className='loading_block'>Loading...</div>
               :
-              <input
-                type="date"
-                defaultValue={moment(new Date(task?.completedAt)).format('YYYY-MM-DD')}
-                min={new Date().toISOString().substr(0, 10)}
-                onChange={e => updateTask({completedAt: `${e.target.value}T00:00:00.000Z`})}
+              <input type="date"
+                     defaultValue={moment(new Date(task?.completedAt)).format('YYYY-MM-DD')}
+                     min={new Date().toISOString().substr(0, 10)}
+                     onChange={e => updateTask({completedAt: `${e.target.value}T00:00:00.000Z`})}
               />
           }
         </div>
@@ -113,28 +112,18 @@ const TaskMajor = ({taskId}) => {
               ?
               <div className='loading_block'>Loading...</div>
               :
-              <CustomSelect
-                initialValue={task?.priority}
-                onChange={priority => updateTask({priority: priority})}
-                options={['LOW', 'MEDIUM', 'HIGH']}
+              <CustomSelect initialValue={task?.priority}
+                            onChange={priority => updateTask({priority: priority})}
+                            options={['LOW', 'MEDIUM', 'HIGH']}
               />
           }
         </div>
-        <div className='task-major_subtasks'>
-          <div className='name'>Subtasks</div>
-          <Subtasks
-            removeSubtask={removeSubtask}
-            toggleSubtask={toggleSubtask}
-            subtasks={task?.subtasks} />
-        </div>
-        <TaskInput
-          text={"Add subtask"}
-          placeholder="Task description"
-          onSubmit={description => addSubtask({description: description})}
+        <Subtasks addSubtask={addSubtask}
+                  removeSubtask={removeSubtask}
+                  toggleSubtask={toggleSubtask}
+                  subtasks={task?.subtasks}
         />
-        <div className='task-major_files'>
-          <Files files={task?.files} taskId={taskId} />
-        </div>
+        <Files files={task?.files} taskId={taskId} />
       </div>
 
       <div className='task-major_comments'>

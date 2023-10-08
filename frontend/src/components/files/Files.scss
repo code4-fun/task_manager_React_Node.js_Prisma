@@ -1,24 +1,17 @@
-.file_component {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.file_body {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.file_title {
-  font-size: 18px;
-  font-weight: 600;
-}
+.files_component,
+.files_body,
 .file_list {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  & .btn, .btn.icon-btn {
-    padding: 0;
-  }
+}
+.files_title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.file_list .btn,
+.file_list .btn.icon-btn {
+  padding: 0;
 }
 .file_list_line {
   display: flex;

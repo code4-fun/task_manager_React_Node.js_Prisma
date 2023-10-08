@@ -1,7 +1,13 @@
+.subtasks_component,
+.subtasks_body,
 .subtask_list {
   display: flex;
   flex-direction: column;
   gap: 7px;
+}
+.subtasks_title {
+  font-size: 18px;
+  font-weight: 600;
 }
 .subtask_list_line {
   display: flex;
@@ -18,7 +24,6 @@
   width: 15px;
 }
 .subtask_list_line label {
-
   line-height: 18px;
   cursor: pointer;
 }

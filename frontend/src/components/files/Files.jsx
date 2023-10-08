@@ -47,11 +47,11 @@ const Files = ({files, taskId}) => {
   }
 
   return (
-    <div className='file_component'>
+    <div className='files_component'>
       {
         files?.length > 0 &&
-          <div className='file_body'>
-            <div className='file_title'>Files</div>
+          <div className='files_body'>
+            <div className='files_title'>Files</div>
             <div className='file_list'>
               {
                 files?.map(file => <div className='file_list_line' key={file.id}>

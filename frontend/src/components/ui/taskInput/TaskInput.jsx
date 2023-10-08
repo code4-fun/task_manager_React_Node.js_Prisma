@@ -11,6 +11,7 @@ const TaskInput = ({text, onSubmit, placeholder, initialValue, buttonText}) => {
       onSubmit(inputText)
     }
     setIsTaskInput(false)
+    setInputText('')
   }
 
   return (
