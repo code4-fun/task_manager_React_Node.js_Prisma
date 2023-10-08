@@ -88,6 +88,11 @@ export const boardReducer = (state = initialState, action) => {
         taskError: action.payload,
         loadingTask: false
       }
+    case taskTypes.TASK_REMOVE_ERROR:
+      return {
+        ...state,
+        taskError: null
+      }
     default:
       return state
   }

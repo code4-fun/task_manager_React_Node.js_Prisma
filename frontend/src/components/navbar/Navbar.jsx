@@ -24,12 +24,10 @@ const Navbar = () => {
 
   function onProjectCreate(project) {
     dispatch(addProjectRequested(project))
-    dispatch(toggleModal({modalVisible: false, modalContent: null}))
   }
 
   function onTaskCreate(task) {
     dispatch(addTaskRequested(task))
-    dispatch(toggleModal({modalVisible: false, modalContent: null}))
   }
 
   const dropdownChangeHandler = param => {

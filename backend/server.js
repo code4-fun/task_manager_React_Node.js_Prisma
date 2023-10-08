@@ -34,9 +34,7 @@ app.addHook("onRequest", (req, res, done) => {
 })
 
 const __filename = fileURLToPath(import.meta.url)
-console.log(__filename)
 const __dirname = dirname(__filename)
-console.log(__dirname)
 app.register(Static, {
   root: join(__dirname, 'public')
 })
@@ -485,7 +483,8 @@ app.get('/tasks/search', async (req, res) => {
       'SELECT "public"."Task"."id", "public"."Task"."number", "public"."Task"."title" ' +
       'FROM "public"."Task" WHERE ("public"."Task"."number" = $1 OR "public"."Task"."title" ILIKE $2)',
       parseInt(req.query.search),
-      `%${req.query.search}`)
+      `%${req.query.search}%`
+    )
   )
 })
 

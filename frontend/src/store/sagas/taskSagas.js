@@ -1,7 +1,7 @@
 import {takeLatest, call, put, fork, all} from 'redux-saga/effects'
 import * as types from '../actions/taskActions'
 import {updateTaskApi, fetchTaskApi, createTaskApi, deleteTaskApi, searchTasksApi} from "../../api/tasks"
-import {TASKS_SEARCH_REQUESTED} from "../actions/taskActions";
+import {toggleModal} from "../actions/modalActions";
 
 function* updateTask({payload}){
   try {
@@ -25,6 +25,7 @@ function* addTask({payload}){
   try {
     const newTask = yield call(createTaskApi, payload)
     yield put(types.addTaskSucceeded(newTask))
+    yield put(toggleModal({modalVisible: false, modalContent: null}))
   } catch (e) {
     yield put(types.addTaskFailed(e))
   }

@@ -15,7 +15,6 @@ const ProjectList = () => {
   }, [])
 
   if(loading) return <div>Loading...</div>
-  if(error) return <div className="error-msg">{error}</div>
   return (
     <>
       {

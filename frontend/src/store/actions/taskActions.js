@@ -19,6 +19,7 @@ export const TASKS_SEARCH_SUCCEEDED = 'TASKS_SEARCH_SUCCEEDED'
 export const TASKS_SEARCH_FAILED = 'TASKS_SEARCH_FAILED'
 
 export const SEARCH_RESULT_DELETE = 'SEARCH_RESULT_DELETE'
+export const TASK_REMOVE_ERROR = 'TASK_REMOVE_ERROR'
 
 export const updateTaskRequested = task => ({
   type: TASK_UPDATE_REQUESTED,
@@ -97,4 +98,8 @@ export const searchTasksFailed = error => ({
 
 export const deleteSearchResult = () => ({
   type: SEARCH_RESULT_DELETE
+})
+
+export const removeTaskError = () => ({
+  type: TASK_REMOVE_ERROR
 })

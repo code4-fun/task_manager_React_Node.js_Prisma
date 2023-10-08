@@ -1,6 +1,7 @@
 import {takeLatest, call, put, fork, all} from 'redux-saga/effects'
 import * as types from '../actions/projectActions'
 import {createProjectApi, deleteProjectApi, fetchProjectsApi, updateProjectApi} from "../../api/projects"
+import {toggleModal} from "../actions/modalActions";
 
 function* fetchProjects(){
   try {
@@ -15,6 +16,7 @@ function* addProject({payload}){
   try {
     const newProject = yield call(createProjectApi, payload)
     yield put(types.addProjectSucceeded(newProject))
+    yield put(toggleModal({modalVisible: false, modalContent: null}))
   } catch (e) {
     yield put(types.addProjectFailed(e))
   }

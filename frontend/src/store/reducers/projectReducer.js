@@ -61,6 +61,11 @@ export const projectReducer = (state = initialState, action) => {
         error: action.payload,
         loading: false
       }
+    case types.PROJECT_REMOVE_ERROR:
+      return {
+        ...state,
+        error: null
+      }
     default:
       return state
   }

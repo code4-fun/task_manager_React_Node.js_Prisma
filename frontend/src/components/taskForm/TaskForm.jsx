@@ -14,6 +14,7 @@ const TaskForm = ({onSubmit, autoFocus = false, buttonText}) => {
   const [priority, setPriority] = useState('')
   const [board, setBoard] = useState('')
   const {boards, projectId} = useSelector(store => store.boards)
+  const {taskError} = useSelector(store => store.boards)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -25,46 +26,51 @@ const TaskForm = ({onSubmit, autoFocus = false, buttonText}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='task_form'>
-      <div className='task_form_title'>Create task</div>
-      <CustomInput
-        autoFocus={autoFocus}
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        type='text'
-        placeholder='Task title' />
-      <CustomTextarea
-        value={description}
-        onChange={e => setDescription(e.target.value)}
-        placeholder='Task description'
-        rows='10' />
-      <div className='completion_date'>
-        <div  className='name'>Completion date</div>
-        <input
-          type='date'
-          value={dateState}
-          min={new Date().toISOString().substr(0, 10)}
-          onChange={e => setDateState(e.target.value)}
-        />
-      </div>
-      <div className='priority_selector'>
-        <div className='name'>Priority</div>
-        <CustomSelect
-          initialValue={'MEDIUM'}
-          onChange={setPriority}
-          options={['LOW', 'MEDIUM', 'HIGH']}
-        />
-      </div>
-      <div className='board_selector'>
-        <div className='name'>Board</div>
-        <CustomSelect
-          initialValue={'Queue'}
-          onChange={setBoard}
-          options={['Queue', 'Development', 'Done']}
-        />
-      </div>
-      <CustomButton>{buttonText}</CustomButton>
-    </form>
+    <>
+      {
+        taskError ? <div className="error-msg">{taskError}</div> : ''
+      }
+      <form onSubmit={handleSubmit} className='task_form'>
+        <div className='task_form_title'>Create task</div>
+        <CustomInput
+          autoFocus={autoFocus}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          type='text'
+          placeholder='Task title' />
+        <CustomTextarea
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          placeholder='Task description'
+          rows='10' />
+        <div className='completion_date'>
+          <div  className='name'>Completion date</div>
+          <input
+            type='date'
+            value={dateState}
+            min={new Date().toISOString().substr(0, 10)}
+            onChange={e => setDateState(e.target.value)}
+          />
+        </div>
+        <div className='priority_selector'>
+          <div className='name'>Priority</div>
+          <CustomSelect
+            initialValue={'MEDIUM'}
+            onChange={setPriority}
+            options={['LOW', 'MEDIUM', 'HIGH']}
+          />
+        </div>
+        <div className='board_selector'>
+          <div className='name'>Board</div>
+          <CustomSelect
+            initialValue={'Queue'}
+            onChange={setBoard}
+            options={['Queue', 'Development', 'Done']}
+          />
+        </div>
+        <CustomButton>{buttonText}</CustomButton>
+      </form>
+    </>
   )
 }
 
