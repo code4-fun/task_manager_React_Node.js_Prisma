@@ -80,8 +80,8 @@ const TaskMajor = ({taskId}) => {
               <div className='loading_block'>Loading...</div>
               :
               <TaskInput
-                text={task?.description}
-                initialValue={task?.title}
+                text={task?.description || 'Add description'}
+                initialValue={task?.description}
                 placeholder="Enter description"
                 onSubmit={description => updateTask({description: description})}
               />
@@ -128,7 +128,7 @@ const TaskMajor = ({taskId}) => {
             subtasks={task?.subtasks} />
         </div>
         <TaskInput
-          text={"Add a subtask"}
+          text={"Add subtask"}
           placeholder="Task description"
           onSubmit={description => addSubtask({description: description})}
         />

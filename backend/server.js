@@ -6,11 +6,14 @@ import * as uuid from 'uuid'
 import 'dotenv'
 import {PrismaClient} from '@prisma/client'
 import multipart from '@fastify/multipart'
-import * as fs from "node:fs"
-import * as util from 'node:util'
-import { pipeline } from 'node:stream'
+import {createWriteStream, unlink} from "node:fs"
+import {promisify} from 'node:util'
+import {pipeline} from 'node:stream'
+import Static from '@fastify/static'
+import {dirname, join} from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const pump = util.promisify(pipeline)
+const pump = promisify(pipeline)
 const app = fastify()
 app.register(sensible)
 app.register(multipart)
@@ -29,6 +32,15 @@ app.addHook("onRequest", (req, res, done) => {
   }
   done()
 })
+
+const __filename = fileURLToPath(import.meta.url)
+console.log(__filename)
+const __dirname = dirname(__filename)
+console.log(__dirname)
+app.register(Static, {
+  root: join(__dirname, 'public')
+})
+
 const prisma = new PrismaClient()
 const CURRENT_USER_NAME = 'Mike'
 
@@ -485,7 +497,7 @@ app.post("/tasks/:taskId/files", async function (req, reply) {
       prisma.file.create({
         data: {
           name: part.filename,
-          path: `public/${uniqueFileName}`,
+          path: uniqueFileName,
           taskId: req.params.taskId
         },
         select: {
@@ -495,7 +507,7 @@ app.post("/tasks/:taskId/files", async function (req, reply) {
         }
       })
     )
-    await pump(part.file, fs.createWriteStream(`./public/${uniqueFileName}`))
+    await pump(part.file, createWriteStream(`./public/${uniqueFileName}`))
     return {...file}
   }
 })
@@ -510,7 +522,7 @@ app.delete("/tasks/:taskId/files/:fileId", async (req, res) => {
     },
   })
 
-  fs.unlink(path, err => {
+  unlink(`./public/${path}`, err => {
     if(err) throw err
   })
 

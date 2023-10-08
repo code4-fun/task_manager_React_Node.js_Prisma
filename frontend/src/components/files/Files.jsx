@@ -4,6 +4,7 @@ import {FaTrash} from 'react-icons/fa'
 import IconBtn from '../ui/iconBtn/IconBtn'
 import {useDispatch} from "react-redux";
 import {uploadFileRequested, deleteFileRequested} from "../../store/actions/fileActions";
+import {toggleModal} from "../../store/actions/modalActions";
 
 const Files = ({files, taskId}) => {
   const dispatch = useDispatch()
@@ -21,7 +22,24 @@ const Files = ({files, taskId}) => {
   }
 
   const openFile = path => {
-    console.log(path)
+    const extension = path.substr(path.lastIndexOf('.') + 1)
+    if(extension === 'txt'){
+      dispatch(
+        toggleModal({
+          modalVisible: true,
+          modalContent: <div>
+            <iframe src={`${process.env.REACT_APP_SERVER_URL}/${path}`}></iframe>
+          </div>
+        })
+      )
+    } else {
+      dispatch(
+        toggleModal({
+          modalVisible: true,
+          modalContent: <div><img src={`${process.env.REACT_APP_SERVER_URL}/${path}`} alt='image' /></div>
+        })
+      )
+    }
   }
 
   const handlePick = () => {

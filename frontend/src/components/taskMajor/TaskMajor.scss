@@ -37,9 +37,11 @@
 .show_comments_button {
   cursor: pointer;
   font-weight: 500;
+  font-size: 16px;
   user-select: none;
   color: hsl(235, 100%, 60%);
   width: fit-content;
+  white-space: nowrap;
 }
 .show_comments_button:hover {
   text-decoration: underline;
