@@ -17,19 +17,18 @@
   }
   &_line {
     display: flex;
+    gap: 8px;
     padding: 7px 22px;
     color: #ffffff;
     user-select: none;
     border: 1px solid #ffffff;
     border-radius: 50px;
     background-color: hsl(235, 50%, 67%);
+    font-weight: 300;
   }
   &_line:hover {
     cursor: pointer;
     background-color: hsl(235, 50%, 74%);
-  }
-  &_line > *:not(:last-child) {
-    padding-right: 10px;
   }
 }
 @media (max-width: 550px) {

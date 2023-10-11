@@ -45,7 +45,8 @@ const SearchForm = ({autoFocus = false}) => {
                   modalContent: <TaskMajor taskId={task.id} />
                 })
              )}>
-            {`${task.number} ${task.title}`}
+              <div>{task.number}</div>
+              <div>{task.title}</div>
           </div>)
         }
       </div>

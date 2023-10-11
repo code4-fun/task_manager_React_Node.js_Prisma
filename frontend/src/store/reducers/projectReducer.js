@@ -26,7 +26,7 @@ export const projectReducer = (state = initialState, action) => {
     case types.PROJECT_ADD_SUCCEEDED:
       return {
         ...state,
-        projects: [...state.projects, {...action.payload}],
+        projects: [{...action.payload}, ...state.projects],
         loading: false,
         error: null
       }

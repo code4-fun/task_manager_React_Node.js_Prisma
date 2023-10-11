@@ -8,6 +8,7 @@ import {deleteProjectRequested, editProjectRequested} from "../../store/actions/
 import {useDispatch} from "react-redux"
 import {toggleModal} from "../../store/actions/modalActions"
 import ProjectForm from "../projectForm/ProjectForm"
+import moment from "moment";
 
 const ProjectItem = ({project}) => {
   const navigate = useNavigate()
@@ -39,14 +40,21 @@ const ProjectItem = ({project}) => {
       <div onClick={() => navigate(`projects/${project.id}`)} className='project_item_body'>
         <div className='project_item_header'>
           <div className='project_item_title'>{project.name}</div>
-          {
-            project.user.id === getCookie('userId') && <div className='project_item_icons'>
-              <IconBtn onClick={e => onProjectEdit(e, project)}  Icon={FaEdit} />
-              <IconBtn onClick={e => onProjectDelete(e, project.id)} Icon={FaTrash} color="danger" />
+          <div className='project_item_info'>
+            <div className="date">
+              {`Created on ${moment(new Date(project?.createdAt)).format('MMM D, YYYY')}`}
             </div>
-          }
+            {
+              project.user.id === getCookie('userId') && <div className='project_item_icons'>
+                <IconBtn onClick={e => onProjectEdit(e, project)}  Icon={FaEdit} />
+                <IconBtn onClick={e => onProjectDelete(e, project.id)} Icon={FaTrash} color="danger" />
+              </div>
+            }
+          </div>
         </div>
-        <div className='project_item_text'>{project.description}</div>
+        {
+          project.description && <div className='project_item_text'>{project.description}</div>
+        }
       </div>
     </div>
   )

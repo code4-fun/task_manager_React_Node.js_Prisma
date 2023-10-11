@@ -53,10 +53,14 @@ const CURRENT_USER_ID = (
 app.get('/projects', async (req, res) => {
   return await commitToDb(
     prisma.project.findMany({
+      orderBy: {
+        createdAt: 'desc'
+      },
       select: {
         id: true,
         name: true,
         description: true,
+        createdAt: true,
         user: {
           select: {
             id: true
@@ -303,6 +307,9 @@ app.get('/tasks/:taskId/comments', async (req, res) => {
     prisma.comment.findMany({
       where: {
         taskId: req.params.taskId
+      },
+      orderBy: {
+        createdAt: 'desc'
       },
       select: {
         id: true,

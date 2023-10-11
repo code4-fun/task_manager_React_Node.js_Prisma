@@ -16,6 +16,7 @@ async function seed() {
     data: {
       name: "Project 1",
       description: "Learn many may means feeling wound county dare discretion sufficient moments herself remainder their. Meet sure made company calling unpleasant dear colonel view resources morning dear weeks world prospect.",
+      createdAt: new Date('2022-08-17 14:07:20+03'),
       userId: john.id
     }
   })
@@ -24,6 +25,7 @@ async function seed() {
     data: {
       name: "Project 2",
       description: "Either afraid pleased graceful pretended hastened old account be feebly entreaties brother contented. Two coming civil branched recurred two norland thing match. Admiration greatly five same match square married rendered see parties did engaged as nor possession early.",
+      createdAt: new Date('2022-09-05 16:12:20+03'),
       userId: mike.id
     }
   })
@@ -32,6 +34,7 @@ async function seed() {
     data: {
       name: "Project 3",
       description: "Pianoforte or frankness dine sixteen sons months contained court affection way about oh any style above. Pain estimable none goodness visitor discovered vanity kindness begin can advantages. Use my play garden help.",
+      createdAt: new Date('2022-10-22 11:30:20+03'),
       userId: mike.id
     }
   })
