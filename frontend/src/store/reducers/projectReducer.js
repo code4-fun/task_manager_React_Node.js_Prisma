@@ -9,6 +9,7 @@ const initialState = {
 export const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.PROJECTS_FETCH_REQUESTED:
+
     case types.PROJECT_ADD_REQUESTED:
     case types.PROJECT_DELETE_REQUESTED:
     case types.PROJECT_EDIT_REQUESTED:
@@ -70,3 +71,7 @@ export const projectReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export const selectAllProjects = state => state.projects.projects
+export const selectProjectError = state => state.projects.error
+export const selectProjectLoadingFlag = state => state.projects.loading

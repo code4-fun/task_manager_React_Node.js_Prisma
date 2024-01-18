@@ -7,12 +7,12 @@ import {useDispatch, useSelector} from "react-redux"
 import CustomModal from "../../components/ui/modal/CustomModal"
 import {fetchBoardsRequested, fetchBoardsSucceeded} from "../../store/actions/boardActions"
 import {updateTaskRequested} from "../../store/actions/taskActions"
+import {selectAllBoards} from "../../store/reducers/boardReducer";
 
 const Project = () => {
   const {id: projectId} = useParams()
   const dispatch = useDispatch()
-  const {boards} = useSelector(state => state.boards)
-  const {modalVisible, modalContent} = useSelector(store => store.modal)
+  const boards = useSelector(selectAllBoards)
 
   const onDragEnd = (result) => {
     const {source, destination} = result
@@ -64,9 +64,7 @@ const Project = () => {
 
   return (
     <>
-      {
-        modalVisible && <CustomModal children={modalContent}/>
-      }
+      <CustomModal />
       <div className='project'>
         <DragDropContext onDragEnd={result => onDragEnd(result)}>
           {

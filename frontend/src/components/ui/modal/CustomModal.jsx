@@ -1,26 +1,25 @@
 import React from 'react'
 import './CustomModal.scss'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {toggleModal} from '../../../store/actions/modalActions'
-import {removeProjectError} from '../../../store/actions/projectActions'
 import {removeTaskError} from '../../../store/actions/taskActions'
 
-const CustomModal = ({children}) => {
+const CustomModal = () => {
   const dispatch = useDispatch()
+  const {modalVisible, modalContent} = useSelector(store => store.modal)
 
   const closeModal = () => {
     dispatch(toggleModal({
       modalVisible: false,
       modalContent: null
     }))
-    dispatch(removeProjectError())
     dispatch(removeTaskError())
   }
 
   return (
-    <div className="modal_outer" onClick={closeModal}>
+    <div className={`modal_outer ${modalVisible && 'active'}`} onClick={closeModal}>
       <div className="modal_inner" onClick={e => e.stopPropagation()}>
-        {children}
+        {modalContent}
       </div>
     </div>
   )

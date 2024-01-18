@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {toggleModal} from "../../store/actions/modalActions";
 import TaskMajor from "../taskMajor/TaskMajor";
 
-const SearchForm = ({autoFocus = false}) => {
+const SearchForm = () => {
   let timer = null
   const dispatch = useDispatch()
   const {searchResult} = useSelector(state => state.tasks)
@@ -27,7 +27,7 @@ const SearchForm = ({autoFocus = false}) => {
   return (
     <div className='search_form'>
       <div className='search_field'>
-        <CustomInput autoFocus={autoFocus}
+        <CustomInput autoFocus
                      autoComplete='off'
                      type='search'
                      onChange={e => searchTask(e.target.value)}

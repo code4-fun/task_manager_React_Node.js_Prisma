@@ -97,3 +97,5 @@ export const boardReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export const selectAllBoards = state => state.boards.boards

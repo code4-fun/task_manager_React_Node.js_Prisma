@@ -3,7 +3,7 @@ import './Board.scss'
 import Task from "../task/Task"
 import {Droppable} from "react-beautiful-dnd"
 
-const Board = ({ board, tasks}) => {
+const Board = ({board, tasks}) => {
   return (
     <div className='board'>
       <div className='board_body'>

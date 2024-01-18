@@ -6,12 +6,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import {toggleModal} from '../../store/actions/modalActions'
 import {addProjectRequested} from '../../store/actions/projectActions'
 import {addTaskRequested} from '../../store/actions/taskActions'
-import CustomDropdown from "../ui/customDropdown/customDropdown";
-import {getCookie} from "../../utils";
-import TaskForm from "../taskForm/TaskForm";
-import ProjectForm from "../projectForm/ProjectForm";
-import SearchForm from "../searchResult/SearchForm";
-import {saveUser} from "../../store/actions/authActions";
+import CustomDropdown from "../ui/customDropdown/customDropdown"
+import {getCookie} from "../../utils"
+import TaskForm from "../taskForm/TaskForm"
+import ProjectForm from "../projectForm/ProjectForm"
+import SearchForm from "../searchResult/SearchForm"
+import {saveUser} from "../../store/actions/authActions"
 
 const Navbar = () => {
   const location = useLocation()
@@ -49,7 +49,7 @@ const Navbar = () => {
       dispatch(
         toggleModal({
           modalVisible: true,
-          modalContent: <SearchForm autoFocus />
+          modalContent: <SearchForm />
         })
       )
     }

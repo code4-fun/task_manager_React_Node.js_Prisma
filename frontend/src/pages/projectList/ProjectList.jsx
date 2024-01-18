@@ -4,11 +4,12 @@ import ProjectItem from "../../components/projectItem/ProjectItem"
 import CustomModal from "../../components/ui/modal/CustomModal"
 import {useDispatch, useSelector} from "react-redux"
 import {fetchProjectsRequested} from "../../store/actions/projectActions"
+import {selectAllProjects, selectProjectLoadingFlag} from "../../store/reducers/projectReducer";
 
 const ProjectList = () => {
   const dispatch = useDispatch()
-  const {modalVisible, modalContent} = useSelector(store => store.modal)
-  const {projects, loading, error} = useSelector(store => store.projects)
+  const projects = useSelector(selectAllProjects)
+  const loading = useSelector(selectProjectLoadingFlag)
 
   useEffect(() => {
     dispatch(fetchProjectsRequested())
@@ -17,9 +18,7 @@ const ProjectList = () => {
   if(loading) return <div>Loading...</div>
   return (
     <>
-      {
-        modalVisible && <CustomModal children={modalContent}/>
-      }
+      <CustomModal />
       <div className='projectList'>
         {
           projects.map(project => <ProjectItem key={project.id} project={project} />)

@@ -87,6 +87,7 @@ app.post('/projects', async (req, res) => {
         id: true,
         name: true,
         description: true,
+        createdAt: true,
         user: {
           select: {
             id: true
@@ -550,4 +551,4 @@ async function commitToDb(promise){
   return data
 }
 
-app.listen({port: process.env.PORT})
+app.listen({port: process.env.PORT}, () => {console.log(`started on ${process.env.PORT}`)})
