@@ -72,7 +72,7 @@
 
 ## Сборка и запуск
 
-### backend
+### backend Prisma
 
 - В директории **backend** создать директорию **public**
 
