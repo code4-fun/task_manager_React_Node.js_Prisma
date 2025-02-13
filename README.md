@@ -2,13 +2,23 @@
 
 ## Используемые технологии
 
+### Frontend
+
 - React
 
 - Redux
 
 - Saga
 
+### Backend Express
+
 - Node.js
+
+- Express
+
+- Sequelize
+
+### Backend Fastify
 
 - Fastify
 
